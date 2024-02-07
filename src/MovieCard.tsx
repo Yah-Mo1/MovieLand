@@ -1,6 +1,16 @@
 import React from "react";
+interface Movie {
+  Title: string;
+  Year: number;
+  Type: string;
+  Poster: string;
+  imdbID: string
+}
 
-const MovieCard = ({ movie }) => {
+interface MovieCardProps {
+  movie: Movie;
+}
+const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <>
       <div className="movie">

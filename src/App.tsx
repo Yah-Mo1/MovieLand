@@ -3,15 +3,26 @@ import "./App.css";
 import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 
+//Adding interface for movies array retrieved from the api
+interface Movie {
+  Title: string;
+  Year: number;
+  Type: string;
+  Poster: string;
+  imdbID: string
+}
+
+
 const API_URL = "http://www.omdbapi.com?apikey=67fc0fa5";
 
-const App = () => {
-  const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
+const App = ():React.JSX.Element => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const searchMovies = async (title: String) => {
+    const response:Response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
-    const movies = data.Search;
+    const movies: Movie[] = data.Search;
+    console.log(movies)
     setMovies(movies);
   };
   useEffect(() => {
